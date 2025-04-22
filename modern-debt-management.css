@@ -1,0 +1,1038 @@
+/* modern-debt-management.css */
+/* Elegante & professionelle Schulden-Management-System Styles */
+/* Letzte Aktualisierung: 2025-04-21 04:41:31 */
+/* Benutzer: deingebieter */
+
+:root {
+    /* Hauptfarbpalette */
+    --primary-color: #095b41;
+    --primary-light: #0d7856;
+    --primary-dark: #004533;
+    --accent-color: #15db95;
+    --accent-light: #5af7c1;
+    --accent-dark: #0caa72;
+    
+    /* Sekundärfarben */
+    --secondary-color: #1e293b;
+    --secondary-light: #334155;
+    --secondary-dark: #0f172a;
+    
+    /* Status-Farben */
+    --success-color: #38bdf8;
+    --success-light: #7dd3fc;
+    --success-dark: #0284c7;
+    --warning-color: #fbbf24;
+    --warning-light: #fcd34d;
+    --warning-dark: #d97706;
+    --danger-color: #ef4444;
+    --danger-light: #f87171;
+    --danger-dark: #b91c1c;
+    --special-color: #111111;
+    
+    /* Neutralfarben */
+    --bg-color: #0f1729;
+    --surface-color: #1a2234;
+    --surface-light: #283347;
+    --surface-lighter: #394864;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    
+    /* Abstände */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    
+    /* Radien */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
+    /* Schatten */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.35);
+    --shadow-glow: 0 0 15px rgba(15, 219, 149, 0.15);
+    
+    /* Animation */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+    --transition-slow: 0.4s ease;
+}
+
+/* Reset und Basisstile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color var(--transition-normal);
+}
+
+header {
+    background-color: var(--primary-color);
+    background-image: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    padding: 1.75rem;
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1));
+    transform: skewX(-30deg) translateX(-100%);
+    z-index: -1;
+    animation: shimmer 5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: skewX(-30deg) translateX(-100%);
+    }
+    30% {
+        transform: skewX(-30deg) translateX(100%);
+    }
+    100% {
+        transform: skewX(-30deg) translateX(100%);
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-xl);
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Sektionen und Container */
+.section {
+    background-color: var(--surface-color);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    margin-bottom: var(--spacing-xl);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Formulare */
+label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--accent-light);
+    transition: color var(--transition-fast);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.85rem;
+    margin-bottom: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-dark);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(15, 219, 149, 0.15);
+}
+
+input[type="date"] {
+    color-scheme: dark;
+}
+
+input[type="file"] {
+    padding: var(--spacing-md);
+    background-color: var(--secondary-dark);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    margin-right: var(--spacing-md);
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: var(--primary-light);
+}
+
+button {
+    padding: 0.85rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+    background-color: var(--primary-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.secondary-button {
+    background-color: var(--secondary-light);
+    color: var(--text-color);
+}
+
+.secondary-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Neue Button-Stile für verschiedene Typen */
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: var(--primary-light);
+}
+
+.success-button {
+    background-color: var(--success-color);
+    color: var(--secondary-dark);
+}
+
+.success-button:hover {
+    background-color: var(--success-light);
+}
+
+.warning-button {
+    background-color: var(--warning-color);
+    color: var(--secondary-dark);
+}
+
+.warning-button:hover {
+    background-color: var(--warning-light);
+}
+
+.danger-button {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.danger-button:hover {
+    background-color: var(--danger-dark);
+}
+
+.flex-row {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.flex-row > div {
+    flex: 1;
+}
+
+/* Visibility */
+.hidden {
+    display: none;
+}
+
+/* Overlay und Modals */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    transition: opacity var(--transition-normal);
+}
+
+.overlay.visible {
+    display: block;
+    animation: fadeIn 0.25s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background-color: var(--surface-color);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    max-width: 90%;
+    width: 450px;
+    border: 1px solid var(--border-color);
+    opacity: 0;
+}
+
+.popup.visible {
+    display: block;
+    animation: scaleIn 0.25s forwards;
+}
+
+@keyframes scaleIn {
+    from { 
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    to { 
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+#ratenzahlungsPopup, #notePopup {
+    background-color: var(--surface-color);
+    width: 550px;
+    max-width: 90%;
+}
+
+#ratenzahlungsPopup h2, #notePopup h2, .popup h2 {
+    margin-top: 0;
+    color: var(--accent-light);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+#ratenzahlungsPopup button, #notePopup button {
+    background-color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+#ratenzahlungsPopup button:hover, #notePopup button:hover {
+    background-color: var(--primary-light);
+}
+
+#ratenzahlungsPopup .amount-input {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Datei-Upload-Bereich */
+.file-section {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-xl);
+    border: 2px dashed var(--border-color);
+    transition: all var(--transition-normal);
+}
+
+.file-section:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* NEU: Komprimierte File-Section für den Datenmanagement-Bereich */
+.file-section.compressed {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Suche & Ergebnisse */
+#searchSection, .search-section {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background-color: var(--surface-color);
+    border-radius: var(--radius-xl);
+}
+
+#results {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background-color: var(--secondary-dark);
+    border-radius: var(--radius-lg);
+    color: var(--accent-light);
+}
+
+.formatted-data {
+    background-color: var(--surface-color);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    color: var(--text-color);
+    margin-top: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.formatted-data h3 {
+    color: var(--accent-light);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+}
+
+/* Ergebnisliste */
+.result-item {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    background-color: var(--surface-light);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    border-left: 4px solid var(--primary-color);
+    transition: all var(--transition-fast);
+}
+
+.result-item:hover {
+    background-color: var(--surface-lighter);
+    transform: translateX(3px);
+}
+
+/* Info Panels */
+.payment-info {
+    background-color: var(--surface-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 500;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    border-left: 5px solid var(--primary-color);
+}
+
+.payment-info div {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-info div::before {
+    content: attr(data-label);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+/* Status Badges */
+.paid-status, .delay-status, .defer-status, .refusal-status {
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.paid-status {
+    color: var(--secondary-dark);
+    background-color: var(--success-light);
+}
+
+.paid-status::before {
+    content: "✓ ";
+    margin-right: 0.4rem;
+    font-weight: bold;
+}
+
+.delay-status {
+    color: white;
+    background-color: var(--danger-color);
+}
+
+.delay-status::before {
+    content: "⚠ ";
+    margin-right: 0.4rem;
+}
+
+.defer-status {
+    color: var(--secondary-dark);
+    background-color: var(--warning-color);
+}
+
+.defer-status::before {
+    content: "⌛ ";
+    margin-right: 0.4rem;
+}
+
+.refusal-status {
+    color: white;
+    background-color: var(--special-color);
+}
+
+.refusal-status::before {
+    content: "✕ ";
+    margin-right: 0.4rem;
+}
+
+/* ID Container */
+.debt-id-container {
+    margin-bottom: var(--spacing-md);
+}
+
+.debt-id {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--primary-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    box-shadow: var(--shadow-md);
+    letter-spacing: 0.03em;
+}
+
+.status-container {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+/* Vermerke & Zahlungen */
+.notes-section, .payments-section {
+    background-color: var(--surface-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    border-left: 4px solid var(--accent-dark);
+}
+
+.notes-section strong, .payments-section strong {
+    color: var(--accent-light);
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+}
+
+.note-item, .payment-item {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--surface-lighter);
+    border-radius: var(--radius-md);
+}
+
+.note-date, .payment-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.status-control {
+    margin-bottom: var(--spacing-xl);
+}
+
+.status-control label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.no-records-message {
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.action-buttons {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+/* User-Info */
+.user-info {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+    color: var(--text-muted);
+    box-shadow: var(--shadow-sm);
+}
+
+.user-info div:first-child {
+    color: var(--accent-light);
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: var(--spacing-md);
+    }
+    
+    .section, #searchSection, .search-section {
+        padding: var(--spacing-lg);
+    }
+    
+    .flex-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .payment-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .debt-id {
+        font-size: 1.2rem;
+    }
+    
+    .user-info {
+        right: 0.5rem;
+        top: 0.5rem;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Animationen */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section, #results, .formatted-data, .result-item {
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-light);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}
+
+/* Benutzerverwaltung */
+.user-details {
+    background-color: var(--surface-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.user-actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--spacing-lg);
+}
+
+.user-actions h4 {
+    margin-bottom: var(--spacing-md);
+}
+
+.user-actions button {
+    margin-bottom: 0.5rem;
+}
+
+.user-status {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Status-Anpassung mit mehr Padding */
+.status-active, .status-suspended, .status-locked {
+    background-color: var(--success-color);
+    color: var(--secondary-dark);
+    padding: 0.5rem 1rem; /* Mehr Abstand zum Wort */
+    border-radius: var(--radius-md);
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.status-suspended {
+    background-color: var(--warning-color);
+}
+
+.status-locked {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.danger-button {
+    background-color: var(--danger-color);
+}
+
+.danger-button:hover {
+    background-color: var(--danger-dark);
+}
+
+.confirm-delete {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--danger-color);
+    border-radius: var(--radius-lg);
+}
+
+.confirm-delete p {
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+h2, h3 {
+    color: var(--accent-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+h4 {
+    color: var(--text-color);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+.user-property {
+    margin-bottom: var(--spacing-md);
+}
+
+.user-property .label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.user-property .value {
+    font-weight: 500;
+}
+
+.notes-list {
+    margin-top: var(--spacing-md);
+}
+
+.user-note {
+    background-color: var(--surface-lighter);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.user-note .note-date {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.error-message {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--danger-color);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    color: var(--danger-light);
+}
+
+/* Login-Styles */
+#loginSection {
+    max-width: 600px;
+    margin: 4rem auto;
+}
+
+.login-instructions {
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+
+.login-form {
+    background-color: var(--surface-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.login-note {
+    margin-top: var(--spacing-xxl);
+    text-align: center;
+    color: var(--text-muted);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.login-note p {
+    margin-bottom: var(--spacing-md);
+}
+
+#userActions {
+    margin-top: var(--spacing-xs);
+}
+
+#logoutButton {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* NEU: Status-Nachrichten */
+.status-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    color: white;
+    z-index: 9999;
+    animation: slideIn 0.3s forwards;
+    max-width: 350px;
+}
+
+.status-message.info {
+    background-color: var(--primary-color);
+}
+
+.status-message.success {
+    background-color: var(--success-color);
+}
+
+.status-message.warning {
+    background-color: var(--warning-color);
+}
+
+.status-message.error {
+    background-color: var(--danger-color);
+}
+
+.status-message.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* NEU: Dateimanagement-Bereich */
+.file-management-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.file-management-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.file-management-buttons button {
+    margin: 0;
+}
+
+.storage-info {
+    background-color: rgba(15, 219, 149, 0.1);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--accent-color);
+}
+
+.info-text {
+    color: var(--accent-light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* NEU: Download-Link Stile */
+.download-link {
+    display: inline-block;
+    color: var(--accent-light);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: rgba(15, 219, 149, 0.1);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.download-link:hover {
+    background-color: rgba(15, 219, 149, 0.2);
+    transform: translateY(-1px);
+}
+
+.download-link:active {
+    transform: translateY(0);
+}
+
+.download-link::before {
+    content: "⬇️ ";
+    margin-right: var(--spacing-xs);
+}
+
+/* Benutzerverwaltungsspezifische Stile basierend auf dem Screenshot */
+.section-title {
+    color: var(--accent-light);
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.section-subtitle {
+    color: var(--accent-light);
+    margin: 15px 0;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.upload-section {
+    border: 1px dashed var(--border-color);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.upload-title {
+    color: var(--accent-light);
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.upload-button {
+    display: flex;
+    align-items: center;
+}
+
+.file-name {
+    margin-left: 10px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-label {
+    width: 140px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.detail-value {
+    flex: 1;
+    color: var(--text-color);
+}
+
+/* Styling für die Dropdown-Menüs */
+.dropdown-menu {
+    position: absolute;
+    background-color: var(--surface-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    z-index: 100;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--surface-lighter);
+    color: var(--accent-light);
+}
