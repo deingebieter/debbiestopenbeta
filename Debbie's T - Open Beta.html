@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schulden-Manager</title>
+    <title>Debbie's T - Open Beta</title>
     <link rel="stylesheet" href="modern-debt-management.css">
 </head>
 <body>
     <header>
-        Schulden-Manager
+        Debbie's T - Open Beta
     </header>
     
     <main>
@@ -53,8 +53,8 @@
         <div id="mainSystem" class="hidden">
             <!-- Benutzerinfo oben rechts -->
             <div class="user-info">
-                <div id="loggedInUser">Benutzer: Nicht angemeldet</div>
-                <div id="currentDate">Datum: -</div>
+                <div id="loggedInUser">Benutzer: deingebieter</div>
+                <div id="currentDate">Datum: 2025-04-22 17:37:38</div>
                 <div id="userActions" class="hidden">
                     <button id="logoutButton" onclick="logout()">Abmelden</button>
                 </div>
@@ -146,6 +146,35 @@
                     <p class="no-records-message">Kein Datensatz geladen. Bitte laden Sie eine Datensatz-Datei.</p>
                 </div>
                 
+                <div id="payment-management-container" class="mt-3">
+                    <div class="payment-controls mt-3">
+                        <select id="payment-status-select" class="form-control">
+                            <option value="">Status auswählen</option>
+                            <option value="default">Zahlungsverzug</option>
+                            <option value="delay">Zahlungsaufschub</option>
+                            <option value="refusal">Zahlungsverweigerung</option>
+                        </select>
+                        <button id="update-payment-status" class="btn btn-sm btn-info mt-2" onclick="updatePaymentStatus()">Status aktualisieren</button>
+                    </div>
+                    <div id="payment-status" class="alert alert-info mt-2">Kein Status</div>
+                    <button id="installment-management" class="btn btn-primary mt-2" onclick="openRatenzahlungsManagement()">Ratenzahlungsmanagement</button>
+                </div>
+                
+                <div class="form-group mt-4">
+                    <label for="note-input">Vermerk hinzufügen</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="note-input" placeholder="Neuen Vermerk eingeben...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="add-note-btn" onclick="addNoteToDataset()">Hinzufügen</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <h5 class="mt-4">Vermerke</h5>
+                <ul id="notes-list" class="list-group">
+                    <!-- Notes will be added here by JS -->
+                </ul>
+                
                 <button id="deleteButton" onclick="deleteDebtEntry()" class="danger-button hidden">Datensatz löschen</button>
             </div>
             
@@ -213,6 +242,7 @@
                             
                             <label for="externalKey">Externer Schlüssel:</label>
                             <input type="number" id="externalKey" placeholder="z.B. 456">
+                            <button id="generate-key-btn" onclick="document.getElementById('externalKey').value = generateExternalKey()" class="secondary-button">Generieren</button>
                         </div>
                     </div>
                     
@@ -220,10 +250,18 @@
                     <textarea id="userNotes" rows="4" placeholder="Optionale Notizen zum Benutzer..."></textarea>
                     
                     <div class="action-buttons">
-                        <button onclick="createUser()">Benutzer erstellen</button>
+                        <button id="create-user-btn" onclick="createUser()">Benutzer erstellen</button>
                     </div>
                     
-                    <div id="formattedData" class="formatted-data hidden"></div>
+                    <div id="user-info-container" class="user-info-container mt-4 p-3 border rounded bg-light hidden">
+                        <h4>Benutzer erfolgreich erstellt</h4>
+                        <p><strong>Benutzername:</strong> <span id="createdUsername"></span></p>
+                        <p><strong>E-Mail:</strong> <span id="createdEmail"></span></p>
+                        <p><strong>Rolle:</strong> <span id="createdRole"></span></p>
+                        <p><strong>ID:</strong> <span id="createdUserId"></span></p>
+                        <p><strong>Externer Schlüssel:</strong> <span id="createdExternalKey"></span></p>
+                        <button id="download-certificate" class="btn btn-success mt-2" onclick="downloadCertificate()">Zertifikat herunterladen</button>
+                    </div>
                 </div>
                 
                 <!-- Benutzer verwalten -->
@@ -469,5 +507,7 @@
     <script src="debt-create.js"></script>
     <script src="userCreation.js"></script>
     <script src="userManagement.js"></script>
+    <script src="stopgap.js"></script>
+    <script src="datasetManagement.js"></script>
 </body>
 </html>
