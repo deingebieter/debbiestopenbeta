@@ -1,6 +1,6 @@
 /* modern-debt-management.css */
 /* Elegante & professionelle Schulden-Management-System Styles */
-/* Letzte Aktualisierung: 2025-04-21 04:41:31 */
+/* Letzte Aktualisierung: 2025-04-22 22:36:11 */
 /* Benutzer: deingebieter */
 
 :root {
@@ -998,41 +998,21 @@ h4 {
     display: flex;
     margin-bottom: 10px;
     padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
 }
 
-.detail-label {
-    width: 140px;
-    color: var(--text-muted);
-    font-size: 0.9rem;
+/* Debugging-Hilfe für Status-Elemente */
+.status-item {
+  opacity: 0.4;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
 }
 
-.detail-value {
-    flex: 1;
-    color: var(--text-color);
+.status-item.active {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
-/* Styling für die Dropdown-Menüs */
-.dropdown-menu {
-    position: absolute;
-    background-color: var(--surface-light);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    z-index: 100;
-    margin-top: 5px;
-    overflow: hidden;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: var(--text-color);
-    text-decoration: none;
-    transition: background-color var(--transition-fast);
-}
-
-.dropdown-menu a:hover {
-    background-color: var(--surface-lighter);
-    color: var(--accent-light);
+/* Debug-Outline für aktive Status-Elemente */
+.status-item.active {
+  outline: 2px solid rgba(15, 219, 149, 0.5);
 }
