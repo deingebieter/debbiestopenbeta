@@ -90,10 +90,8 @@ function displayEntry(entry) {
         <div class="detail-label">Monatliche Rate:</div>
         <div class="detail-value">${entry.monthlyRate} €</div>
       </div>
-      <div class="management-buttons">
-        <button onclick="openRatenzahlungsPopup()">Ratenzahlungs-Management</button>
-      </div>
     `;
+    // Der Button "Ratenzahlungsmanagement" wurde hier entfernt, da er überflüssig ist
   }
   
   // Zahlungsziel und Datumsangaben
@@ -112,21 +110,20 @@ function displayEntry(entry) {
     </div>
   `;
   
-  // KORRIGIERTE Anzeige der Status-Indikatoren
   // Eintragsdetails anzeigen (wenn vorhanden)
   html += `
     <div class="entry-section">
       <h4>Status</h4>
       <div class="status-indicators">
-        <div class="status-item ${entry.paymentStatus && entry.paymentStatus.delay ? 'active' : ''}">
+        <div class="status-item ${entry.status && entry.status.paymentDelay ? 'active' : ''}">
           <span class="status-icon">⚠️</span>
           <span class="status-text">Zahlungsverzug</span>
         </div>
-        <div class="status-item ${entry.paymentStatus && entry.paymentStatus.defer ? 'active' : ''}">
+        <div class="status-item ${entry.status && entry.status.paymentDefer ? 'active' : ''}">
           <span class="status-icon">⏱️</span>
           <span class="status-text">Zahlungsaufschub</span>
         </div>
-        <div class="status-item ${entry.paymentStatus && entry.paymentStatus.refusal ? 'active' : ''}">
+        <div class="status-item ${entry.status && entry.status.paymentRefusal ? 'active' : ''}">
           <span class="status-icon">❌</span>
           <span class="status-text">Zahlungsverweigerung</span>
         </div>
@@ -152,6 +149,7 @@ function displayEntry(entry) {
     html += '<p class="no-data">Keine Vermerke vorhanden.</p>';
   }
   
+  // Hier wird nur der Button "Vermerk hinzufügen" angezeigt, ohne das überflüssige Eingabefeld
   html += `
     <div class="note-actions">
       <button onclick="openNotePopup()">Vermerk hinzufügen</button>
@@ -266,10 +264,10 @@ function openRatenzahlungsPopup() {
   popup.classList.remove('hidden');
   
   // Initialisiere die Status-Auswahl basierend auf dem aktuellen Status
-  if (currentEntry && currentEntry.paymentStatus) {
-    document.getElementById('paymentDelaySelect').value = currentEntry.paymentStatus.delay ? 'set' : 'unset';
-    document.getElementById('paymentDeferSelect').value = currentEntry.paymentStatus.defer ? 'set' : 'unset';
-    document.getElementById('paymentRefusalSelect').value = currentEntry.paymentStatus.refusal ? 'set' : 'unset';
+  if (currentEntry && currentEntry.status) {
+    document.getElementById('paymentDelaySelect').value = currentEntry.status.paymentDelay ? 'set' : 'unset';
+    document.getElementById('paymentDeferSelect').value = currentEntry.status.paymentDefer ? 'set' : 'unset';
+    document.getElementById('paymentRefusalSelect').value = currentEntry.status.paymentRefusal ? 'set' : 'unset';
   } else {
     // Setze Standardwerte, wenn kein Status vorhanden ist
     document.getElementById('paymentDelaySelect').value = '';
@@ -326,19 +324,19 @@ function updateDebtStatus() {
   }
   
   // Status-Objekt initialisieren, falls nicht vorhanden
-  if (!currentEntry.paymentStatus) {
-    currentEntry.paymentStatus = {};
+  if (!currentEntry.status) {
+    currentEntry.status = {};
   }
   
-  // Status aktualisieren mit vereinheitlichten Property-Namen
+  // Status aktualisieren
   if (document.getElementById('paymentDelaySelect').value !== '') {
-    currentEntry.paymentStatus.delay = paymentDelay;
+    currentEntry.status.paymentDelay = paymentDelay;
   }
   if (document.getElementById('paymentDeferSelect').value !== '') {
-    currentEntry.paymentStatus.defer = paymentDefer;
+    currentEntry.status.paymentDefer = paymentDefer;
   }
   if (document.getElementById('paymentRefusalSelect').value !== '') {
-    currentEntry.paymentStatus.refusal = paymentRefusal;
+    currentEntry.status.paymentRefusal = paymentRefusal;
   }
   
   // Datensatz speichern
@@ -813,4 +811,15 @@ function escapeHtml(unsafe) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+/**
+ * Versteckt alle Abschnitte
+ * Diese Funktion wird als Hilfsfunktion für viewDatasetDetails verwendet
+ */
+function hideAllSections() {
+  document.getElementById('createSection').classList.add('hidden');
+  document.getElementById('manageSection').classList.add('hidden');
+  document.getElementById('searchSection').classList.add('hidden');
+  document.getElementById('userSection').classList.add('hidden');
 }
